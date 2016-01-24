@@ -1,10 +1,11 @@
 // Define App Constants
 
 if (Meteor.App) {
-  throw new Meteor.Error('Meteor.App already defined? see client/lib/constants.js');
+  throw new Meteor.Error(
+    'Meteor.App already defined? see client/lib/constants.js');
 }
 
 Meteor.App = {
-  NAME: 'Meteor Boilerplate',
-  DESCRIPTION: 'A boilerplate for meteorjs projects http://matteodem.github.io/meteor-boilerplate/'
+  NAME: 'Emma Team Quizzer',
+  DESCRIPTION: 'Test your knowledge of the Emma team'
 };

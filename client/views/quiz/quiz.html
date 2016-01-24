@@ -1,3 +1,7 @@
 <template name="quiz">
-    <p>Template quiz</p>
+    <h1>Quiz</h1>
+    {{#each problems}}
+      <p>Problem: {{this.solution.name}}</p>
+    {{/each}}
+    {{quiz}}
 </template>
