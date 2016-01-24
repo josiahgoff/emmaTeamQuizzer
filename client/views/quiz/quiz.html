@@ -2,7 +2,7 @@
     {{#each problems}}
       <form id="form_{{id}}" class="problem-form" action="POST">
         <input type="hidden" name="quiz" value="{{../_id}}">
-        <h2 class="problem-header">Which one is {{this.solution.name}}?</h2>
+        <h2 class="problem-header">Which one is <strong>{{this.solution.name}}</strong>?</h2>
         <ul class="choices">
 
           {{#each this.choices}}
@@ -11,6 +11,12 @@
                 <input type="radio" name="{{../id}}" value="{{this._id}}"
                 required disabled={{choiceDisabled ..}} checked={{choiceChecked ..}} />
                 <img src="{{photoSrc ..}}"/>
+                {{#if ../answerSubmitted}}
+                  <div class="person-details">
+                    <span class="person-name">{{name}}</span>
+                    <span class="person-position">{{position}}</span>
+                  </div>
+                {{/if}}
               </label>
             </li>
           {{/each}}
@@ -18,9 +24,6 @@
         </ul>
         <button type="submit" class="problem-submit button ui"
           value="{{id}}">Submit</button>
-        {{#if answerSubmitted}}
-          <p>{{correctMessage this.correct}}</p>
-        {{/if}}
       </form>
     {{/each}}
     <button class="quiz-submit btn btn-primary btn-large" value={{_id}}>Submit Quiz</button>
