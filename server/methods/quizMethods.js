@@ -1,6 +1,6 @@
 function buildQuiz(collection, options) {
   options = options || {};
-  options.problemCount = options.problemCount || 3;
+  options.problemCount = options.problemCount || 10;
 
   var problems = new Array(),
     score = 0;
@@ -62,6 +62,7 @@ function gradeQuiz(quizId) {
   }, {
     $set: {
       score: score,
+      points: score,
       status: 'complete'
     }
   });

@@ -89,7 +89,7 @@ Template['quiz'].events({
       if (error) {
         console.error(error);
       } else {
-        Router.go('/profile/' + Meteor.userId());
+        // whatever
       }
     });
   },

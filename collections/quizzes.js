@@ -31,6 +31,10 @@ Quizzes.attachSchema(
     problems: {
       type: [ProblemSchema]
     },
+    points: {
+      type: Number,
+      optional: true
+    },
     score: {
       type: Number
     },

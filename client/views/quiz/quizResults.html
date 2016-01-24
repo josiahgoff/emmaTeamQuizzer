@@ -1,0 +1,26 @@
+<template name="quizResults">
+    <h1>Results</h1>
+    <p>Score: {{score}} / {{possibleScore}}</p>
+
+    {{#each problems}}
+    <div class="problem-answers">
+      <h2 class="answers-heading">{{solution.name}}</h2>
+      <div class="answer correct">
+        <p class="answer-heading">Correct Answer</p>
+        {{#with solution}}
+          <img src="{{photo}}" alt="{{name}}">
+        {{/with}}
+      </div>
+      <div class="answer submitted">
+        <p class="answer-heading">Your Answer</p>
+        {{#with yourAnswer}}
+          <img src="{{answeredPhoto ..}}" alt="{{name}}">
+        {{/with}}
+      </div>
+    </div>
+    {{/each}}
+
+    <p style="text-align: center;">
+      <a href="{{pathFor route='quizNew'}}">Quiz me again!</a>
+    </p>
+</template>

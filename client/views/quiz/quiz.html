@@ -1,6 +1,6 @@
 <template name="quiz">
     {{#if quizCompleted}}
-      Yay!
+      {{> quizResults}}
     {{else}}
 
       {{#with currentProblem}}
@@ -33,7 +33,7 @@
               {{/unless}}
             {{else}}
               <button type="submit" class="problem-submit btn"
-                value="{{id}}">Submit</button>
+                value="{{id}}">Save</button>
             {{/if}}
           </p>
         </form>
@@ -42,7 +42,7 @@
       {{#if problemsCompleted}}
         {{#unless answerSubmitted}}
           <button class="quiz-submit btn btn-primary btn-large"
-            value={{../_id}}>Submit Quiz</button>
+            value={{../_id}}>See Results</button>
         {{/unless}}
       {{/if}}
 
