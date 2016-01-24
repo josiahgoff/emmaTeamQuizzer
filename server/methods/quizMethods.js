@@ -34,7 +34,7 @@ function buildProblem(collection, solution) {
   return {
     id: Random.id(),
     solution: solution,
-    choices: choices
+    choices: _.shuffle(choices)
   };
 }
 
@@ -74,7 +74,6 @@ function tallyScore(quiz) {
 
   _.each(quiz.problems, function(problem) {
     score = score + problem.points;
-    console.log(score);
   });
 
   return score;
