@@ -65,7 +65,7 @@ Template['quiz'].events({
       if (error) {
         console.error(error);
       } else {
-        console.log(result);
+        Router.go('/profile/' + Meteor.userId());
       }
     });
   }

@@ -1,9 +1,8 @@
 <template name="quiz">
-    <h1>Quiz</h1>
     {{#each problems}}
       <form id="form_{{id}}" class="problem-form" action="POST">
         <input type="hidden" name="quiz" value="{{../_id}}">
-        <h2 class="problem-header">{{this.solution.name}}</h2>
+        <h2 class="problem-header">Which one is {{this.solution.name}}?</h2>
         <ul class="choices">
 
           {{#each this.choices}}

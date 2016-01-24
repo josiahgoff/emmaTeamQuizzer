@@ -1,5 +1,8 @@
-Router.route('/quiz/new', function() {
-  this.render('quizNew');
+Router.route('/quiz/new', {
+  name: 'quizNew',
+  action: function() {
+    this.render('quizNew');
+  }
 });
 
 Router.route('/quiz/:_id', {

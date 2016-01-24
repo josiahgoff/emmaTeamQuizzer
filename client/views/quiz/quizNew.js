@@ -6,7 +6,7 @@ Template['quizNew'].events({
       if (error) {
         alert(error);
       } else {
-        console.log(result);
+        Router.go('quiz', result)
       }
     });
   }

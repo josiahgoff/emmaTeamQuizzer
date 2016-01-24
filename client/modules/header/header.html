@@ -2,10 +2,11 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Emma Team Quizzer</a>
+        <a class="navbar-brand" href="{{pathFor route='home'}}">Emma Team Quizzer</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser }}
+          <li><a href="{{pathFor route='quizNew'}}" class="link">New Quiz</a></li>
           <li><a href="{{pathFor route='profile' data=currentUser}}">My Profile</a></li>
         {{/if}}
         {{>loginButtons}}

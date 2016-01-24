@@ -4,6 +4,10 @@ Template['profile'].helpers({
 
     return Quizzes.find({
       userId: template.data._id
+    }, {
+      sort: {
+        createdAt: -1
+      }
     });
   }
 });
