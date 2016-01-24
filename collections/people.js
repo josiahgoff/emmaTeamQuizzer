@@ -2,7 +2,8 @@ People = new Mongo.Collection('people');
 
 PeopleSchema = new SimpleSchema({
   _id: {
-    type: String
+    type: String,
+    optional: true
   },
   name: {
     type: String

@@ -1,6 +1,6 @@
 function buildQuiz(collection, options) {
   options = options || {};
-  options.problemCount = 3;
+  options.problemCount = options.problemCount || 10;
 
   var problems = new Array(),
     score = 0;
@@ -11,10 +11,14 @@ function buildQuiz(collection, options) {
 
   var quizId = Quizzes.insert({
     problems: problems,
-    score: score
+    score: score,
+    userId: options.userId,
+    createdAt: new Date()
   });
 
-  return quizId;
+  return Quizzes.findOne({
+    _id: quizId
+  });
 }
 
 function buildProblem(collection, solution) {
@@ -49,12 +53,14 @@ function getRandomDoc(collection, excludes) {
 Meteor.methods({
   startQuiz: function() {
 
-    // if (!this.userId) {
-    //   throw new Meteor.Error("not-logged-in",
-    //     "Must be logged in to take the quiz.");
-    // }
+    if (!this.userId) {
+      throw new Meteor.Error("not-logged-in",
+        "Must be logged in to take the quiz.");
+    }
 
-    return buildQuiz(People);
+    return buildQuiz(People, {
+      userId: this.userId
+    });
   },
 
   submitAnswer: function(quizId, problemId, answer) {

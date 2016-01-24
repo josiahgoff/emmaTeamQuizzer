@@ -26,7 +26,7 @@ Template['quiz'].helpers({
   },
 
   choiceDisabled: function(parent) {
-    return parent.answerSubmitted.length ? true : false;
+    return parent.answerSubmitted ? true : false;
   }
 });
 

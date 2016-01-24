@@ -37,11 +37,14 @@ Quizzes.attachSchema(
     status: {
       type: String,
       defaultValue: 'pending'
+    },
+    userId: {
+      type: String
+    },
+    createdAt: {
+      type: Date,
+      denyUpdate: true
     }
-    // createdAt: {
-    //   type: Date,
-    //   denyUpdate: true
-    // }
   })
 );
 

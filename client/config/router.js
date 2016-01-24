@@ -1,3 +1,6 @@
 Router.configure({
-  layoutTemplate: 'basicLayout'
+  layoutTemplate: 'basicLayout',
+  loadingTemplate: 'loading',
+  loginTemplate: 'login',
+  notFoundTemplate: 'notFound'
 });
