@@ -1,0 +1,44 @@
+@import 'variables.less';
+@import 'helpers.less';
+@import 'lib/elements.less';
+
+.problem-header {
+  text-align: center;
+}
+.choices {
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+}
+.choice {
+  width: 46%;
+  float: left;
+  margin: 1em 1%;
+  input {
+    visibility: hidden;
+    position: absolute;
+  }
+  input + img {
+    cursor: pointer;
+    border: 5px solid transparent;
+    max-width: 100%;
+  }
+  input:disabled + img {
+    opacity: 0.5;
+    cursor: default;
+  }
+  input:checked + img {
+    border-color: blue;
+  }
+  &.correct {
+    img {
+      border-color: green !important;
+      opacity: 1 !important;
+    }
+  }
+  &.incorrect {
+    img {
+      border-color: red !important;
+    }
+  }
+}

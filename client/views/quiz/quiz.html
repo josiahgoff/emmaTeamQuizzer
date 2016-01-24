@@ -1,7 +1,27 @@
 <template name="quiz">
     <h1>Quiz</h1>
     {{#each problems}}
-      <p>Problem: {{this.solution.name}}</p>
+      <form id="form_{{id}}" class="problem-form" action="POST">
+        <input type="hidden" name="quiz" value="{{../_id}}">
+        <h2 class="problem-header">{{this.solution.name}}</h2>
+        <ul class="choices">
+
+          {{#each this.choices}}
+            <li class="choice photo {{answerClasses ..}}">
+              <label>
+                <input type="radio" name="{{../id}}" value="{{this._id}}"
+                required disabled={{choiceDisabled ..}} checked={{choiceChecked ..}} />
+                <img src="{{photo}}"/>
+              </label>
+            </li>
+          {{/each}}
+
+        </ul>
+        <button type="submit" class="problem-submit button ui"
+          value="{{id}}">Submit</button>
+        {{#if answerSubmitted}}
+          <p>{{correctMessage this.correct}}</p>
+        {{/if}}
+      </form>
     {{/each}}
-    {{quiz}}
 </template>

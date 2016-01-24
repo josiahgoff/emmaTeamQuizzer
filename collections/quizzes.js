@@ -1,15 +1,28 @@
 Quizzes = new Mongo.Collection('quizzes');
 
 ProblemSchema = new SimpleSchema({
+  id: {
+    type: String
+  },
   choices: {
-    type: [PeopleSchema]
+    type: [Object],
+    blackbox: true
   },
   solution: {
-    type: PeopleSchema
+    type: Object,
+    blackbox: true
   },
   answerSubmitted: {
     type: String,
     optional: true
+  },
+  correct: {
+    type: Boolean,
+    optional: true
+  },
+  points: {
+    type: Number,
+    defaultValue: 0
   }
 });
 
@@ -20,6 +33,10 @@ Quizzes.attachSchema(
     },
     score: {
       type: Number
+    },
+    status: {
+      type: String,
+      defaultValue: 'pending'
     }
     // createdAt: {
     //   type: Date,
