@@ -1,6 +1,6 @@
 function buildQuiz(collection, options) {
   options = options || {};
-  options.problemCount = options.problemCount || 10;
+  options.problemCount = options.problemCount || 3;
 
   var problems = new Array(),
     score = 0;

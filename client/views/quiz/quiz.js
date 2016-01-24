@@ -1,6 +1,18 @@
+Template['quiz'].created = function() {
+  setProblemIndex(getNextProblemIndex(Template.instance().data.problems));
+};
+
 Template['quiz'].helpers({
   correctMessage: function(correct) {
     return correct ? 'Correct!' : 'Incorrect :(';
+  },
+
+  currentProblemIndex: function() {
+    return getProblemIndex();
+  },
+
+  currentProblem: function() {
+    return getCurrentProblem(Template.instance().data.problems);
   },
 
   answerClasses: function(parent) {
@@ -35,6 +47,18 @@ Template['quiz'].helpers({
 
   choiceDisabled: function(parent) {
     return parent.answerSubmitted ? true : false;
+  },
+
+  problemsCompleted: function() {
+    var problems = Template.instance().data.problems,
+      totalProblems = problems.length,
+      nextIndex = getNextProblemIndex(problems);
+
+    return nextIndex >= totalProblems;
+  },
+
+  quizCompleted: function() {
+    return this.status == 'complete';
   }
 });
 
@@ -52,7 +76,7 @@ Template['quiz'].events({
         if (error) {
           console.error(error);
         } else {
-          console.log(result);
+          // console.log(result);
         }
       }
     );
@@ -68,5 +92,37 @@ Template['quiz'].events({
         Router.go('/profile/' + Meteor.userId());
       }
     });
+  },
+
+  'click .next-problem': function(e) {
+    e.preventDefault();
+
+    setProblemIndex(getNextProblemIndex(Template.instance().data.problems));
   }
 });
+
+function setProblemIndex(problemIndex) {
+  Session.set('quizProblemIndex', problemIndex);
+}
+
+function getProblemIndex() {
+  var index = Session.get('quizProblemIndex');
+
+  return index;
+}
+
+function nextProblem(problems) {
+  var problem = problems[getProblemIndex()];
+
+  return problem;
+}
+
+function getCurrentProblem(problems) {
+  var i = getProblemIndex();
+
+  return problems[i];
+}
+
+function getNextProblemIndex(problems) {
+  return problems.getLastIndexByKey('answerSubmitted') + 1;
+}
