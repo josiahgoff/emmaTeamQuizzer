@@ -50,6 +50,36 @@ function getRandomDoc(collection, excludes) {
   return doc[0];
 }
 
+function gradeQuiz(quizId) {
+  var quiz = Quizzes.find({
+    _id: quizId
+  }).fetch()[0];
+
+  var score = tallyScore(quiz);
+
+  Quizzes.update({
+    _id: quizId
+  }, {
+    $set: {
+      score: score,
+      status: 'complete'
+    }
+  });
+
+  return quizId;
+}
+
+function tallyScore(quiz) {
+  var score = 0;
+
+  _.each(quiz.problems, function(problem) {
+    score = score + problem.points;
+    console.log(score);
+  });
+
+  return score;
+}
+
 Meteor.methods({
   startQuiz: function() {
 
@@ -67,6 +97,11 @@ Meteor.methods({
     check(quizId, String);
     check(problemId, String);
     check(answer, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-logged-in",
+        "Must be logged in to take the quiz.");
+    }
 
     var quiz = Quizzes.findOne({
       _id: quizId
@@ -103,5 +138,16 @@ Meteor.methods({
     });
 
     return quiz;
+  },
+
+  'submitQuiz': function(quizId) {
+    check(quizId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-logged-in",
+        "Must be logged in to take the quiz.");
+    }
+
+    return gradeQuiz(quizId);
   }
 });

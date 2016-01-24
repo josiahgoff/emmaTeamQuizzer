@@ -11,7 +11,7 @@
               <label>
                 <input type="radio" name="{{../id}}" value="{{this._id}}"
                 required disabled={{choiceDisabled ..}} checked={{choiceChecked ..}} />
-                <img src="{{photo}}"/>
+                <img src="{{photoSrc ..}}"/>
               </label>
             </li>
           {{/each}}
@@ -24,4 +24,5 @@
         {{/if}}
       </form>
     {{/each}}
+    <button class="quiz-submit btn btn-primary btn-large" value={{_id}}>Submit Quiz</button>
 </template>

@@ -10,7 +10,6 @@ accounts-password
 aldeed:collection2
 iron:router
 raix:handlebar-helpers
-matteodem:easy-security
 audit-argument-checks
 fastclick
 zimme:iron-router-active
@@ -36,3 +35,4 @@ spacebars
 check
 ian:accounts-ui-bootstrap-3
 twbs:bootstrap
+reywood:publish-composite

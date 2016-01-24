@@ -36,7 +36,7 @@ Quizzes.attachSchema(
     },
     status: {
       type: String,
-      defaultValue: 'pending'
+      defaultValue: 'incomplete'
     },
     userId: {
       type: String
