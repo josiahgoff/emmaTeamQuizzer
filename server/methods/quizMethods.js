@@ -28,7 +28,15 @@ function buildProblem(collection, solution) {
   choices.push(solution);
 
   for (var i = 0; i < 3; i++) {
-    choices.push(getRandomDoc(collection));
+    var choice = getRandomDoc(collection);
+
+    if (_.findWhere(choices, {
+        _id: choice._id
+      })) {
+      i--;
+    } else {
+      choices.push(choice);
+    }
   }
 
   return {
@@ -38,10 +46,8 @@ function buildProblem(collection, solution) {
   };
 }
 
-function getRandomDoc(collection, excludes) {
-  excludes = excludes || [];
-
-  var n = _.random(1, collection.find().count()),
+function getRandomDoc(collection) {
+  var n = _.random(collection.find().count() - 1),
     doc = collection.find({}, {
       skip: n,
       limit: 1
