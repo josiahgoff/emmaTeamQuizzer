@@ -15,8 +15,14 @@
               <a href="{{pathFor route='quiz'}}">
                 {{createdAt}}</a>
             </td>
-            <td>{{status}}</td>
-            <td>{{score}}</td>
+            <td class="text-capitalize">{{status}}</td>
+            <td>
+              {{#if complete}}
+                {{score}} / {{possibleScore}}
+              {{else}}
+                -
+              {{/if}}
+            </td>
           </tr>
         {{/each}}
       </tbody>

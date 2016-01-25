@@ -9,6 +9,14 @@ Template['profile'].helpers({
         createdAt: -1
       }
     });
+  },
+
+  complete: function() {
+    return this.status === 'complete';
+  },
+
+  possibleScore: function() {
+    return this.problems.length;
   }
 });
 
