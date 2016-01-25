@@ -4,7 +4,6 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Status</th>
           <th>Score</th>
           <th>Difficulty</th>
           <th>Points</th>
@@ -17,12 +16,11 @@
               <a href="{{pathFor route='quiz'}}">
                 {{createdAt}}</a>
             </td>
-            <td class="text-capitalize">{{status}}</td>
             <td>
               {{#if complete}}
                 {{score}} / {{possibleScore}}
               {{else}}
-                -
+                <em class="text-capitalize">{{status}}</em>
               {{/if}}
             </td>
             <td class="text-capitalize">{{difficulty}}</td>

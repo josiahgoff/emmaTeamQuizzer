@@ -1,3 +1,11 @@
 <template name="home">
-    Hello boilerplate world!
+  <div class="jumbotron">
+    <h1>Ready to quiz?</h1>
+    {{#if currentUser}}
+      <p><a class="btn btn-primary btn-lg" href="{{pathFor route='quizNew'}}"
+        role="button">Quiz Me</a></p>
+    {{else}}
+      <p>Create an account or log in to take the quiz...</p>
+    {{/if}}
+  </div>
 </template>
