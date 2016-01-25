@@ -1,18 +1,19 @@
 <template name="quizResults">
-    <h1>Results</h1>
-    <p>Score: {{score}} / {{possibleScore}}</p>
+  <div class="page-header">
+    <h1>Results <small>{{score}} / {{possibleScore}}</small></h1>
+  </div>
 
     {{#each problems}}
-    <div class="problem-answers">
-      <h2 class="answers-heading">{{solution.name}}</h2>
-      <p class="answers-heading">{{solution.position}}</p>
-      <div class="answer correct">
+    <div class="problem-answers clearfix">
+      <h2 class="text-center">{{solution.name}}</h2>
+      <p class="text-center"><em>{{solution.position}}</em></p>
+      <div class="answer col-xs-6 correct">
         <p class="answer-heading">Correct Answer</p>
         {{#with solution}}
           <img src="{{photo}}" alt="{{name}}">
         {{/with}}
       </div>
-      <div class="answer submitted {{answerClasses}}">
+      <div class="answer col-xs-6 submitted {{answerClasses}}">
         <p class="answer-heading">Your Answer</p>
         {{#with yourAnswer}}
           <img src="{{answeredPhoto ..}}" alt="{{name}}">
@@ -21,7 +22,7 @@
     </div>
     {{/each}}
 
-    <p style="text-align: center;">
+    <h2 class="text-center">
       <a href="{{pathFor route='quizNew'}}">Quiz me again!</a>
-    </p>
+    </h2>
 </template>

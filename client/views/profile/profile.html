@@ -6,6 +6,8 @@
           <th>Date</th>
           <th>Status</th>
           <th>Score</th>
+          <th>Difficulty</th>
+          <th>Points</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +21,14 @@
             <td>
               {{#if complete}}
                 {{score}} / {{possibleScore}}
+              {{else}}
+                -
+              {{/if}}
+            </td>
+            <td class="text-capitalize">{{difficulty}}</td>
+            <td>
+              {{#if complete}}
+                {{points}}
               {{else}}
                 -
               {{/if}}
