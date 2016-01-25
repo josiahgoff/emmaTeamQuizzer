@@ -59,6 +59,13 @@ Template['quiz'].helpers({
 
   quizCompleted: function() {
     return this.status == 'complete';
+  },
+
+  progressTracker: function() {
+    var data = Template.instance().data,
+      index = getProblemIndex() + 1;
+
+    return index + '/' + data.problems.length;
   }
 });
 

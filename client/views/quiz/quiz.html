@@ -4,6 +4,7 @@
     {{else}}
 
       {{#with currentProblem}}
+        <div class="quiz-progress">{{progressTracker}}</div>
         <form id="form_{{id}}" class="problem-form" action="POST">
           <input type="hidden" name="quiz" value="{{../_id}}">
           <h2 class="problem-header">Which one is <strong>{{this.solution.name}}</strong>?</h2>
@@ -29,11 +30,15 @@
           <p>
             {{#if answerSubmitted}}
               {{#unless problemsCompleted}}
-                <button type="button" class="next-problem btn">Next ></button>
+                <button type="button"
+                  class="next-problem btn btn-lg btn-block btn-default">
+                  Next >
+                </button>
               {{/unless}}
             {{else}}
-              <button type="submit" class="problem-submit btn"
-                value="{{id}}">Save</button>
+              <button type="submit"
+                class="problem-submit btn btn-lg btn-block btn-default"
+                value="{{id}}">Submit</button>
             {{/if}}
           </p>
         </form>
@@ -41,7 +46,7 @@
 
       {{#if problemsCompleted}}
         {{#unless answerSubmitted}}
-          <button class="quiz-submit btn btn-primary btn-large"
+          <button class="quiz-submit btn btn-primary btn-lg btn-block"
             value={{../_id}}>See Results</button>
         {{/unless}}
       {{/if}}
