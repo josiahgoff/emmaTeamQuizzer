@@ -1,8 +1,20 @@
 Template['quizNew'].helpers({});
 
 Template['quizNew'].events({
-  'click #startQuiz': function(event, template) {
-    Meteor.call('startQuiz', function(error, result) {
+  'submit #new-quiz': function(e) {
+    e.preventDefault();
+    var options = {},
+      formData = $(e.target).serializeArray();
+
+    options.problemCount = _.findWhere(formData, {
+      name: 'problem_count'
+    }).value;
+
+    options.difficulty = _.findWhere(formData, {
+      name: 'difficulty'
+    }).value;
+
+    Meteor.call('startQuiz', options, function(error, result) {
       if (error) {
         alert(error);
       } else {

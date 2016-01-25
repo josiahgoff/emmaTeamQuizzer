@@ -1,17 +1,36 @@
+var levels = {
+  easy: {
+    choices: 4,
+    multiplier: 1
+  },
+  medium: {
+    choices: 8,
+    multiplier: 2
+  },
+  hard: {
+    choices: 16,
+    multiplier: 4
+  }
+};
+
 function buildQuiz(collection, options) {
   options = options || {};
   options.problemCount = options.problemCount || 10;
+  options.difficulty = options.difficulty || 'easy';
 
   var problems = new Array(),
     score = 0;
 
   for (var i = 0; i < options.problemCount; i++) {
-    problems.push(buildProblem(collection));
+    problems.push(buildProblem(collection, {
+      choiceCount: levels[options.difficulty].choices
+    }));
   }
 
   var quizId = Quizzes.insert({
     problems: problems,
     score: score,
+    difficulty: options.difficulty,
     userId: options.userId,
     createdAt: new Date()
   });
@@ -21,13 +40,15 @@ function buildQuiz(collection, options) {
   });
 }
 
-function buildProblem(collection, solution) {
-  solution = solution || getRandomDoc(collection);
+function buildProblem(collection, options) {
+  options = options || {};
+  options.solution = options.solution || getRandomDoc(collection);
+  options.choiceCount = options.choiceCount || 4;
 
   var choices = new Array();
-  choices.push(solution);
+  choices.push(options.solution);
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < (options.choiceCount - 1); i++) {
     var choice = getRandomDoc(collection);
 
     if (_.findWhere(choices, {
@@ -41,7 +62,7 @@ function buildProblem(collection, solution) {
 
   return {
     id: Random.id(),
-    solution: solution,
+    solution: options.solution,
     choices: _.shuffle(choices)
   };
 }
@@ -68,7 +89,7 @@ function gradeQuiz(quizId) {
   }, {
     $set: {
       score: score,
-      points: score,
+      points: score * levels[quiz.difficulty].multiplier,
       status: 'complete'
     }
   });
@@ -87,16 +108,17 @@ function tallyScore(quiz) {
 }
 
 Meteor.methods({
-  startQuiz: function() {
+  startQuiz: function(options) {
+    check(options, Object);
 
     if (!this.userId) {
       throw new Meteor.Error("not-logged-in",
         "Must be logged in to take the quiz.");
     }
 
-    return buildQuiz(People, {
-      userId: this.userId
-    });
+    options.userId = this.userId;
+
+    return buildQuiz(People, options);
   },
 
   submitAnswer: function(quizId, problemId, answer) {

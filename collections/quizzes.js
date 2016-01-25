@@ -45,6 +45,10 @@ Quizzes.attachSchema(
     userId: {
       type: String
     },
+    difficulty: {
+      type: String,
+      defaultValue: 'easy'
+    },
     createdAt: {
       type: Date,
       denyUpdate: true
