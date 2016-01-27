@@ -1,4 +1,4 @@
-@import 'variables.less';
+@import 'lib/_variables.less';
 @import 'helpers.less';
 @import 'lib/elements.less';
 
@@ -19,7 +19,7 @@
     bottom: 5px;
     right: 5px;
     border: 5px solid transparent;
-    color: white;
+    color: @white;
     text-shadow: 1px 1px black;
     padding: 1em;
     text-align: right;
@@ -52,26 +52,26 @@
     opacity: 0.5;
     cursor: default;
     &+.person-details {
-      color: black;
-      text-shadow: 1px 1px 7px #fff;
+      color: @black;
+      text-shadow: 1px 1px 7px @white;
     }
   }
   input:checked + img {
-    border-color: blue;
+    border-color: @icy;
   }
   &.correct {
     img {
-      border-color: green !important;
+      border-color: @minty !important;
       opacity: 1 !important;
     }
     .person-details {
-      color: white !important;
-      text-shadow: 1px 1px black !important;
+      color: @white !important;
+      text-shadow: 1px 1px @black !important;
     }
   }
   &.incorrect {
     img {
-      border-color: red !important;
+      border-color: @blam !important;
     }
   }
 }

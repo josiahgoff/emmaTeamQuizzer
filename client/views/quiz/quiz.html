@@ -31,13 +31,13 @@
             {{#if answerSubmitted}}
               {{#unless problemsCompleted}}
                 <button type="button"
-                  class="next-problem btn btn-lg btn-block btn-default">
+                  class="next-problem btn btn-lg btn-block btn-success">
                   Next >
                 </button>
               {{/unless}}
             {{else}}
               <button type="submit"
-                class="problem-submit btn btn-lg btn-block btn-default"
+                class="problem-submit btn btn-lg btn-block btn-primary"
                 value="{{id}}">Submit</button>
             {{/if}}
           </div>
@@ -47,8 +47,8 @@
       {{#if problemsCompleted}}
         {{#unless answerSubmitted}}
         <div class="col-md-12">
-          <button class="quiz-submit btn btn-primary btn-lg btn-block"
-            value={{../_id}}>See Results</button>
+          <button class="quiz-submit btn btn-success btn-lg btn-block"
+            value={{../_id}}>Calculate Results</button>
         </div>
         {{/unless}}
       {{/if}}
