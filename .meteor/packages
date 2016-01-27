@@ -19,7 +19,6 @@ natestrauser:animate-css
 dburles:collection-helpers
 meteorhacks:fast-render
 
-semantic:ui-css
 standard-minifiers
 meteor-base
 mobile-experience
@@ -34,5 +33,5 @@ ejson
 spacebars
 check
 ian:accounts-ui-bootstrap-3
-twbs:bootstrap
 reywood:publish-composite
+huttonr:bootstrap3
