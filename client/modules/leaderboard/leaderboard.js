@@ -4,7 +4,7 @@ Template['leaderboard'].helpers({
       sort: {points: -1},
       limit: 10
     }).fetch();
-    console.log(users);
+
     return users;
   },
   rank: function(index) {

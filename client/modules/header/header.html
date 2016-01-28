@@ -22,7 +22,6 @@
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser }}
             <li><a href="{{pathFor route='quizNew'}}" class="link">New Quiz</a></li>
-            <li><a href="{{pathFor route='profile' data=currentUser}}">Profile</a></li>
           {{/if}}
           {{>loginButtons}}
         </ul>
