@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th>Date</th>
+          <th>Type</th>
           <th>Score</th>
           <th>Difficulty</th>
           <th>Points</th>
@@ -15,6 +16,9 @@
             <td>
               <a href="{{pathFor route='quiz'}}">
                 {{createdAt}}</a>
+            </td>
+            <td>
+              {{type}}
             </td>
             <td>
               {{#if complete}}

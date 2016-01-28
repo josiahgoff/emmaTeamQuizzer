@@ -4,6 +4,9 @@ ProblemSchema = new SimpleSchema({
   id: {
     type: String
   },
+  type: {
+    type: String,
+  },
   choices: {
     type: [Object],
     blackbox: true
@@ -28,6 +31,10 @@ ProblemSchema = new SimpleSchema({
 
 Quizzes.attachSchema(
   new SimpleSchema({
+    type: {
+      type: String,
+      defaultValue: 'faceToName'
+    },
     problems: {
       type: [ProblemSchema]
     },

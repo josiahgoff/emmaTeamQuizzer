@@ -14,6 +14,10 @@ Template['quizNew'].events({
       name: 'difficulty'
     }).value;
 
+    options.type = _.findWhere(formData, {
+      name: 'type'
+    }).value;
+
     Meteor.call('startQuiz', options, function(error, result) {
       if (error) {
         alert(error);

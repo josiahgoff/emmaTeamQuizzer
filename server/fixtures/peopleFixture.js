@@ -297,10 +297,10 @@ Fixtures.people = [{
   name: "McKenzie Van Meter",
   position: "Content Writer"
 }, {
-  photo: "http://myemma.com/static/uploads/staff/Sandy_Himsworth_A_576px.jpg",
-  photo2: "http://myemma.com/static/uploads/staff/Sandy_Himsworth_B_576px.jpg",
-  name: "Sandy Himsworth",
-  position: "Scrum Master"
+  photo: "http://myemma.com/static/uploads/staff/Josiah_Goff_A.jpg",
+  photo2: "http://myemma.com/static/uploads/staff/Josiah_Goff_B.jpg",
+  name: "Josiah Goff",
+  position: "Product Manager, Integrations"
 }, {
   photo: "http://myemma.com/static/uploads/staff/Aaron_Coleman_A_576px_1.jpg",
   photo2: "http://myemma.com/static/uploads/staff/Aaron_Coleman_B_576px_1.jpg",

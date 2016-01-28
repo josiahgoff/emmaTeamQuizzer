@@ -3,16 +3,24 @@ Template['quiz'].created = function() {
 };
 
 Template['quiz'].helpers({
-  correctMessage: function(correct) {
-    return correct ? 'Correct!' : 'Incorrect :(';
-  },
-
   currentProblemIndex: function() {
     return getProblemIndex();
   },
 
   currentProblem: function() {
     return getCurrentProblem(Template.instance().data.problems);
+  },
+
+  problemClasses: function() {
+    var classes = '';
+
+    if (this.type == 'faceToName') {
+      classes += ' face-to-name';
+    } else {
+      classes += ' name-to-face';
+    }
+
+    return classes;
   },
 
   answerClasses: function(parent) {
@@ -66,6 +74,14 @@ Template['quiz'].helpers({
       index = getProblemIndex() + 1;
 
     return index + '/' + data.problems.length;
+  },
+
+  faceToName: function() {
+    return this.type == 'faceToName';
+  },
+
+  nameToFace: function() {
+    return this.type == 'nameToFace';
   }
 });
 
@@ -109,6 +125,7 @@ Template['quiz'].events({
 });
 
 function setProblemIndex(problemIndex) {
+  console.log(problemIndex);
   Session.set('quizProblemIndex', problemIndex);
 }
 
@@ -131,5 +148,11 @@ function getCurrentProblem(problems) {
 }
 
 function getNextProblemIndex(problems) {
-  return problems.getLastIndexByKey('answerSubmitted') + 1;
+  var index = problems.getLastIndexByKey('answerSubmitted');
+
+  // if (index < (problems.length)) {
+    index++;
+  // }
+
+  return index;
 }

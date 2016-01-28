@@ -17,17 +17,20 @@ function buildQuiz(collection, options) {
   options = options || {};
   options.problemCount = options.problemCount || 10;
   options.difficulty = options.difficulty || 'easy';
+  options.type = options.type || 'faceToName';
 
   var problems = new Array(),
     score = 0;
 
   for (var i = 0; i < options.problemCount; i++) {
     problems.push(buildProblem(collection, {
-      choiceCount: levels[options.difficulty].choices
+      choiceCount: levels[options.difficulty].choices,
+      type: options.type
     }));
   }
 
   var quizId = Quizzes.insert({
+    type: options.type,
     problems: problems,
     score: score,
     difficulty: options.difficulty,
@@ -44,13 +47,18 @@ function buildProblem(collection, options) {
   options = options || {};
   options.solution = options.solution || getRandomDoc(collection);
   options.choiceCount = options.choiceCount || 4;
+  options.type = options.type || 'faceToName';
 
-  var choices = new Array();
+  var type,
+    choices = [];
+
+  // Make sure the solution is one of the choices
   choices.push(options.solution);
 
   for (var i = 0; i < (options.choiceCount - 1); i++) {
     var choice = getRandomDoc(collection);
 
+    // If it's not already a choice, add it
     if (_.findWhere(choices, {
         _id: choice._id
       })) {
@@ -60,8 +68,19 @@ function buildProblem(collection, options) {
     }
   }
 
+  // If quiz type is random, shuffle the problem type.
+  // Otherwise, problem type = quiz type.
+  if (options.type === 'random') {
+    var types = _.shuffle(['faceToName', 'nameToFace']);
+
+    type = types[0];
+  } else {
+    type = options.type;
+  }
+
   return {
     id: Random.id(),
+    type: type,
     solution: options.solution,
     choices: _.shuffle(choices)
   };

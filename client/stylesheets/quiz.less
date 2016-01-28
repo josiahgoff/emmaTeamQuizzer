@@ -2,23 +2,53 @@
 @import 'helpers.less';
 @import 'lib/elements.less';
 
-.problem-header {
-  text-align: center;
-}
-.choices {
-  list-style: none;
-  overflow: hidden;
-  padding: 0;
+.problem {
+  margin-bottom: 2em;
 }
 .choice {
   label {
     position: relative;
+    display: block;
+    width: 100%;
   }
+  input {
+    visibility: hidden;
+    position: absolute;
+  }
+  .choice-option {
+    position: relative;
+    cursor: pointer;
+    border: 5px solid transparent;
+    display: block;
+  }
+  input:disabled + .choice-option {
+    opacity: 0.5;
+    cursor: default;
+    &+.person-details {
+      color: @black;
+      text-shadow: 1px 1px 7px @white;
+    }
+  }
+  input:checked + .choice-option {
+    border-color: @icy;
+  }
+  &.correct {
+    .choice-option {
+      border-color: @minty !important;
+      opacity: 1 !important;
+    }
+  }
+  &.incorrect {
+    .choice-option {
+      border-color: @blam !important;
+    }
+  }
+}
+.person-photo {
   .person-details {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    border: 5px solid transparent;
     color: @white;
     text-shadow: 1px 1px black;
     padding: 1em;
@@ -38,55 +68,44 @@
       font-weight: 300;
     }
   }
-  input {
-    visibility: hidden;
-    position: absolute;
-  }
-  input + img {
-    position: relative;
-    cursor: pointer;
-    border: 5px solid transparent;
-    max-width: 100%;
-  }
-  input:disabled + img {
-    opacity: 0.5;
-    cursor: default;
-    &+.person-details {
-      color: @black;
-      text-shadow: 1px 1px 7px @white;
-    }
-  }
-  input:checked + img {
-    border-color: @icy;
-  }
   &.correct {
-    img {
-      border-color: @minty !important;
-      opacity: 1 !important;
-    }
     .person-details {
       color: @white !important;
       text-shadow: 1px 1px @black !important;
     }
   }
-  &.incorrect {
-    img {
-      border-color: @blam !important;
-    }
+}
+.face-to-name {
+
+}
+.name-to-face {
+  .choices {
+    padding-top: 2em;
+  }
+  .choice {
+    margin: 2em;
+  }
+  .choice-name {
+    margin: 0;
+  }
+}
+
+.name-to-face, .answer {
+  .person-photo .person-details {
+    bottom: 10px;
+    right: 15px;
   }
 }
 
 .problem-answers {
   margin: 4em 0;
-  img {
-    max-width: 100%;
-  }
 }
 .answers-heading {
   text-align: center;
 }
 .answer {
   margin-top: 1em;
+  text-align: center;
   &.incorrect {
     img {
       opacity: 0.5;
@@ -94,6 +113,5 @@
   }
 }
 .answer-heading {
-  text-align: center;
   margin: 0 0 0.6em;
 }

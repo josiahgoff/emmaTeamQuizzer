@@ -1,28 +1,41 @@
 <template name="quizResults">
-  <div class="page-header">
-    <h1>Results <small>{{score}} / {{possibleScore}}</small></h1>
+  <div class="jumbotron text-center clearfix">
+    <h1>You scored <strong class="text-primary">{{score}}</strong> out
+      of <strong>{{possibleScore}}</strong>!</h1>
+      <div class="col-sm-offset-2 col-sm-8">
+        <a href="{{pathFor route='quizNew'}}"
+          class="btn btn-xl btn-primary btn-block">Quiz Me Again</a>
+      </div>
   </div>
 
     {{#each problems}}
     <div class="problem-answers clearfix">
       <h2 class="text-center">{{solution.name}}</h2>
       <p class="text-center"><em>{{solution.position}}</em></p>
-      <div class="answer col-xs-6 correct">
+      <div class="answer col-sm-offset-2 col-sm-4 correct">
         <p class="answer-heading">Correct Answer</p>
         {{#with solution}}
-          <img src="{{photo}}" alt="{{name}}">
+          <div class="person-photo">
+            <img src="{{photo}}" alt="{{name}}">
+            <div class="person-details">
+              <span class="person-name">{{name}}</span>
+              <span class="person-position">{{position}}</span>
+            </div>
+          </div>
         {{/with}}
       </div>
-      <div class="answer col-xs-6 submitted {{answerClasses}}">
+      <div class="answer col-sm-4 submitted {{answerClasses}}">
         <p class="answer-heading">Your Answer</p>
         {{#with yourAnswer}}
-          <img src="{{answeredPhoto ..}}" alt="{{name}}">
+          <div class="person-photo">
+            <img src="{{answeredPhoto ..}}" alt="{{name}}">
+            <div class="person-details">
+              <span class="person-name">{{name}}</span>
+              <span class="person-position">{{position}}</span>
+            </div>
+          </div>
         {{/with}}
       </div>
     </div>
     {{/each}}
-
-    <h2 class="text-center">
-      <a href="{{pathFor route='quizNew'}}">Quiz me again!</a>
-    </h2>
 </template>

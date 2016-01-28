@@ -4,6 +4,7 @@ Template['quizResults'].helpers({
   },
 
   yourAnswer: function() {
+    console.log(this.choices, this.answerSubmitted);
     return _.findWhere(this.choices, {
       _id: this.answerSubmitted
     });
