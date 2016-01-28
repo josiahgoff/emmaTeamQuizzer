@@ -1,7 +1,7 @@
 Template['profile'].helpers({
   quizzes: function() {
     var template = Template.instance();
-
+    console.log(template.data);
     return Quizzes.find({
       userId: template.data._id
     }, {

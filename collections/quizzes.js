@@ -63,6 +63,25 @@ Quizzes.attachSchema(
   })
 );
 
+// Add hooks
+Quizzes.hookOptions.after.update = {fetchPrevious: false};
+Quizzes.after.update(function (userId, doc, fieldNames, modifier, options) {
+  if (doc.status === 'complete') {
+    updateUserPoints(doc.userId);
+  }
+});
+
+function updateUserPoints(userId) {
+  var total = 0,
+    quizzes = Quizzes.find({userId: userId}, {fields: {'points': 1}}).fetch();
+
+  _.each(quizzes, function(quiz) {
+    total += quiz.points ? quiz.points : 0;
+  });
+
+  Meteor.users.update({_id: userId}, {$set: {'points': total}});
+}
+
 // Collection2 already does schema checking
 // Add custom permission rules if needed
 if (Meteor.isServer) {
