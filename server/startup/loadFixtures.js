@@ -10,6 +10,5 @@ function loadFixture(fixtures, collection) {
 Meteor.startup(function() {
   if (People.find().count() === 0) {
     loadFixture(Fixtures.people, People);
-    console.log(People.find().fetch());
   }
 });

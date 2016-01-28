@@ -18,7 +18,14 @@ Router.onBeforeAction(OnBeforeActions.requireLogin, {
 
 Router.route('/', {
   name: 'home',
-
+  waitOn: function() {
+    return [
+      Meteor.subscribe('usersTopTen')
+    ];
+  },
+  data: function() {
+    return Meteor.users.find();
+  },
   action: function() {
     this.render('home');
     SEO.set({
