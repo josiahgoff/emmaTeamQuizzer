@@ -1,0 +1,24 @@
+{
+  "name": "emma-team-quizzer",
+  "version": "1.0.0",
+  "description": "Memorize all the peoples!",
+  "main": "index.js",
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://josiahgoff@github.com/josiahgoff/emmaTeamQuizzer.git"
+  },
+  "author": "Josiah Goff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josiahgoff/emmaTeamQuizzer/issues"
+  },
+  "homepage": "https://github.com/josiahgoff/emmaTeamQuizzer#readme"
+}
