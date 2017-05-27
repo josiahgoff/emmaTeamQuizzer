@@ -7,6 +7,8 @@ $photos.each(function(){
   person.photo = $el.find('img').attr('src');
   person.photo2 = $el.find('img').attr('onmouseover').split("'")[1];
   person.name = $el.find('.info-name').text();
-  person.title = $el.find('.info-title').text();
+  person.position = $el.find('.info-title').text();
   people.push(person);
 });
+
+JSON.stringify(people);
